@@ -1,0 +1,5 @@
+{
+  "cwd": ".",
+  "package": "./package.json",
+  "testMatch": ["test-d/*.ts"]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "dggal",
+  "version": "0.0.5",
+  "type": "module",
+  "main": "dist/dggal.js",
+  "types": "dist/dggal.d.ts",
+  "exports": { ".": "./dist/dggal.js" },
+  "files": [ "dist/*" ],
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "verify:submodules": "node scripts/verify-submodules.js",
+    "recurse": "npm run verify:submodules",
+    "build:eC": "cd eC && make -j4 -f Makefile.wasm",
+    "build:dggal": "cd dggal && make -j4 -f Makefile.wasm",
+    "prepare:dist": "shx mkdir -p dist && shx cp dggal/bindings/js/dggal.js dggal/bindings/js/dggal.d.ts dist/",
+    "copy:glue": "shx cp dggal/bindings/c_fn/obj/dggal.allinone.linux.wasm/*.js dist/libdggal.js",
+    "copy:wasm": "shx cp dggal/bindings/c_fn/obj/dggal.allinone.linux.wasm/*.wasm dist/",
+    "build": "npm run clean && npm run recurse && npm run build:eC && npm run build:dggal && npm run prepare:dist && npm run copy:glue && npm run copy:wasm",
+    "prepublishOnly": "npm run build",
+    "test:node": "node test/test.js",
+    "test:types": "tsc -p tsconfig.json",
+    "test:tsd": "tsd",
+    "prebuild": "npm install --include=dev",
+    "pretest": "npm install --include=dev",
+    "test": "npm run test:node && npm run test:types && npm run test:tsd",
+    "prepare:web": "shx rm -rf web && shx mkdir -p web && shx cp dist/* web/ && shx cp dggal/bindings_examples/js/*.js dggal/bindings_examples/js/*.html web/",
+    "serve": "http-server web -p 8000",
+    "launch": "wait-on http://localhost:8000 && open-cli http://localhost:8000/",
+    "start:build": "node -e \"require('fs').existsSync('dist/dggal.js') && require('fs').existsSync('dist/libdggal.js') ? process.exit(0) : process.exit(1)\" || npm run build",
+    "start": "npm run start:build && npm run prepare:web && concurrently \"npm run serve\" \"npm run launch\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "http-server": "^14.1.1",
+    "open-cli": "^8.0.0",
+    "shx": "^0.3.4",
+    "tsd": "^0.33.0",
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.1"
+  }
+}
