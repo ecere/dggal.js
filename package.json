@@ -1,6 +1,6 @@
 {
   "name": "dggal",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/dggal.js",
   "types": "dist/dggal.d.ts",
