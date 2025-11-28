@@ -69,10 +69,10 @@ async function run() {
     1
   );
   rs.getLevelFromRefZoneArea(1, 1);
-  rs.getLevelFromScaleDenominator(1, 1);
+  rs.getLevelFromScaleDenominator(1, 1, 0.28);
   rs.getMetersPerSubZoneFromLevel(1, 1);
   rs.getRefZoneArea(1);
-  rs.getScaleDenominatorFromLevel(1, 1);
+  rs.getScaleDenominatorFromLevel(1, 1, 0.28);
 
   rs.delete();
   dggal.terminate();

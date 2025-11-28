@@ -123,10 +123,10 @@ expectType<DGGRSZone[]>(rs.compactZones([zone]));
 expectType<number>(rs.getLevelFromMetersPerSubZone(100, depth));
 expectType<number>(rs.getLevelFromPixelsAndExtent(bbox, 256, 256, depth));
 expectType<number>(rs.getLevelFromRefZoneArea(1, depth));
-expectType<number>(rs.getLevelFromScaleDenominator(1, depth));
+expectType<number>(rs.getLevelFromScaleDenominator(1, depth, 0.28));
 expectType<number>(rs.getMetersPerSubZoneFromLevel(level, depth));
 expectType<number>(rs.getRefZoneArea(depth));
-expectType<number>(rs.getScaleDenominatorFromLevel(level, depth));
+expectType<number>(rs.getScaleDenominatorFromLevel(level, depth, 0.28));
 
 // Cleanup
 expectType<void>(rs.delete());
