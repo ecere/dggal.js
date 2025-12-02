@@ -81,7 +81,7 @@ expectType<number>(rs.getMaxNeighbors());
 expectType<Pointd[]>(rs.getZoneCRSVertices(zone, crs));
 expectType<GeoPoint[]>(rs.getZoneWGS84Vertices(zone));
 expectType<GeoPoint[]>(rs.getZoneRefinedWGS84Vertices(zone, edgeRefinement));
-expectType<Pointd[]>(rs.getZoneRefinedCRSVertices(zone, edgeRefinement));
+expectType<Pointd[]>(rs.getZoneRefinedCRSVertices(zone, crs, edgeRefinement));
 
 // Sub-zone queries
 expectType<DGGRSZone[]>(rs.getSubZones(zone, depth));

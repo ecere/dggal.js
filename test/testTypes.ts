@@ -44,7 +44,7 @@ async function run() {
   rs.getZoneCRSVertices(nullZone, crs);
   rs.getZoneWGS84Vertices(nullZone);
   rs.getZoneRefinedWGS84Vertices(nullZone, 2);
-  rs.getZoneRefinedCRSVertices(nullZone, 2);
+  rs.getZoneRefinedCRSVertices(nullZone, crs, 2);
   rs.getSubZones(nullZone, 2);
   rs.getRefinementRatio();
   rs.getZoneWGS84Extent(nullZone);
